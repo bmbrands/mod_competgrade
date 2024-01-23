@@ -1,0 +1,49 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_competgrade/gradeside
+
+    TODO describe template gradeside
+
+    Example context (json):
+    {
+    }
+}}
+<div class="px-3 py-1">
+    <h3 class="h4 w-100 text-center mb-3">{{#str}}evaluation, mod_competgrade{{/str}}</h3>
+
+    <div class="certifsection">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="certifheading mr-2">
+                    {{#str}}globalgrade, mod_competgrade{{/str}} :
+                </label>
+                <input type="number" class="form-control" name="globalgrade" data-action="globalgrade" data-grade-id="0" data-criterium-id="1" value="{{globalgrade}}" min="0" max="100" step="1" />
+            </div>
+        </form>
+    </div>
+    <div class="certifsection">
+        <h3 class="certifheading">{{#str}}globalcomment, mod_competgrade{{/str}}</h3>
+        <div class="small mb-1">{{#str}}globalcomment_info, mod_competgrade{{/str}}</div>
+        <div data-region="commentwrapper">
+            <textarea class="form-control" name="globalcomment" data-action="globalcomment" rows="2" cols="4" data-region="comment" data-comment-id="0" value="{{globalcomment}}" /></textarea>
+            <div class="d-flex justify-content-end">
+                <div class="opacity-0 statusmessage text-success" data-region="commentsaved">{{#str}}commentsaved, mod_competgrade{{/str}}</div>
+            </div>
+        </div>
+    </div>
+</div>

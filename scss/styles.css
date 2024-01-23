@@ -1,0 +1,111 @@
+.path-mod-competgrade .grading-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; }
+
+.path-mod-competgrade .usernavigation .userinfo {
+  width: 170px;
+  min-width: 170px;
+  display: flex;
+  flex-direction: column; }
+
+.path-mod-competgrade .userheader {
+  justify-content: center;
+  margin-top: 2rem; }
+  .path-mod-competgrade .userheader .userimage img {
+    width: 100px;
+    height: 100px; }
+
+.path-mod-competgrade .grade-panel {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column; }
+
+.path-mod-competgrade .grade-header {
+  display: flex; }
+  .path-mod-competgrade .grade-header .user-header {
+    flex: 1 1 70%; }
+  .path-mod-competgrade .grade-header .user-grade {
+    flex: 1 1 30%;
+    background-color: #f5f5f5;
+    margin-bottom: -70px;
+    z-index: 1; }
+
+.path-mod-competgrade .tab-content {
+  flex: 1 0 auto;
+  display: flex; }
+  .path-mod-competgrade .tab-content > .active {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto; }
+
+.path-mod-competgrade .grade-tabs {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column; }
+  .path-mod-competgrade .grade-tabs .nav-container,
+  .path-mod-competgrade .grade-tabs .tab-inner {
+    display: flex; }
+    .path-mod-competgrade .grade-tabs .nav-container .nav-tabs,
+    .path-mod-competgrade .grade-tabs .nav-container .tab-main,
+    .path-mod-competgrade .grade-tabs .tab-inner .nav-tabs,
+    .path-mod-competgrade .grade-tabs .tab-inner .tab-main {
+      flex: 1 1 70%;
+      max-width: 70%; }
+    .path-mod-competgrade .grade-tabs .nav-container .void,
+    .path-mod-competgrade .grade-tabs .nav-container .tab-aside,
+    .path-mod-competgrade .grade-tabs .tab-inner .void,
+    .path-mod-competgrade .grade-tabs .tab-inner .tab-aside {
+      flex: 1 1 30%;
+      max-width: 30%; }
+    .path-mod-competgrade .grade-tabs .nav-container .void,
+    .path-mod-competgrade .grade-tabs .tab-inner .void {
+      background-color: #f5f5f5; }
+    .path-mod-competgrade .grade-tabs .nav-container .tab-aside,
+    .path-mod-competgrade .grade-tabs .tab-inner .tab-aside {
+      background-color: #f1f1f1; }
+  .path-mod-competgrade .grade-tabs .tab-inner {
+    display: flex;
+    flex: 1 0 auto; }
+
+.path-mod-competgrade .tab-main {
+  padding: 1rem; }
+
+.path-mod-competgrade svg .svg-fill {
+  fill: #1d2125; }
+
+.path-mod-competgrade svg .svg-stroke {
+  stroke: #1d2125; }
+
+.path-mod-competgrade .certifheading {
+  font-size: 1.1rem;
+  font-weight: 500; }
+
+.path-mod-competgrade .certifsection {
+  margin-bottom: 0.5rem; }
+
+.path-mod-competgrade .nav-link.active {
+  color: #0E847B; }
+  .path-mod-competgrade .nav-link.active svg .svg-fill {
+    fill: #0E847B; }
+  .path-mod-competgrade .nav-link.active svg .svg-stroke {
+    stroke: #0E847B; }
+
+.path-mod-competgrade .comment {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25remrem;
+  background-color: #f5f5f5;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  margin-left: 2.5rem; }
+
+.path-mod-competgrade .commentsection {
+  margin-bottom: 1rem; }
+
+.path-mod-competgrade .statusmessage {
+  transition: opacity 0.5s ease-in-out; }
+
+.path-mod-competgrade .opacity-0 {
+  opacity: 0; }
+
+/*# sourceMappingURL=styles.css.map */

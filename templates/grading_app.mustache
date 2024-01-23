@@ -1,0 +1,58 @@
+{{!
+    This file is part of The Moodle simplednd module.
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_competgrade/grading_app
+
+    This template renders the header.
+
+    Example context (json):
+    {
+    }
+}}
+<link rel="stylesheet" href="{{{urlprefix}}}/mod/competgrade/scss/styles.css?v={{version}}" />
+<div class="grading-wrapper" data-region="grading-app" data-competgrade-id="{{competgradeid}}">
+    <nav class="navbar navbar-light">
+        <button class="btn btn-outline-primary" data-action="close">
+            {{#str}}closeevaluation, mod_competgrade{{/str}}
+        </button>
+        <a class="nav-link" href="{{{courseurl}}}">
+            {{{coursename}}}
+        </a>
+        <div data-region="user-navigation">
+            {{> mod_competgrade/usernavigation }}
+        </div>
+    </nav>
+    <div class="grade-panel">
+        <div class="grade-header">
+            <div class="user-header" data-region="user-header">
+                {{> mod_competgrade/userheader }}
+            </div>
+            <div class="user-grade" data-region="user-grade">
+                {{> mod_competgrade/gradeside }}
+            </div>
+        </div>
+        <div class="grade-tabs" data-region="grade-tabs">
+            {{> mod_competgrade/gradetabs }}
+        </div>
+    </div>
+    <div class="tool_usertours-resettourcontainer"></div>
+</div>
+{{#js}}
+require(['mod_competgrade/competgrade'], function(competgrade) {
+    competgrade.init();
+});
+{{/js}}

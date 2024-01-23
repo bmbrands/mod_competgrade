@@ -1,0 +1,22 @@
+{
+  "name": "scss",
+  "version": "1.0.0",
+  "description": "scss compiler",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass --source-map true styles.scss styles.css",
+    "watch:sass": "nodemon -e scss -x \"npm run compile:sass\"",
+    "livereload": "livereload -d .",
+    "start": "npm-run-all --parallel watch:sass livereload"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "livereload": "^0.9.3",
+    "node-sass": "^9.0.0",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
