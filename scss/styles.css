@@ -87,12 +87,11 @@
 .path-mod-competgrade .nav-link {
   border-width: 3px; }
   .path-mod-competgrade .nav-link.active, .path-mod-competgrade .nav-link:hover {
-    color: #0E847B;
-    border-color: transparent transparent #0E847B; }
+    border-color: transparent transparent var(--primary); }
     .path-mod-competgrade .nav-link.active svg .svg-fill, .path-mod-competgrade .nav-link:hover svg .svg-fill {
-      fill: #0E847B; }
+      fill: var(--primary); }
     .path-mod-competgrade .nav-link.active svg .svg-stroke, .path-mod-competgrade .nav-link:hover svg .svg-stroke {
-      stroke: #0E847B; }
+      stroke: var(--primary); }
 
 .path-mod-competgrade .comment {
   margin-top: 0.25rem;
@@ -107,6 +106,11 @@
   .path-mod-competgrade .commentsection .userimage img {
     width: 35px;
     height: 35px; }
+
+.path-mod-competgrade .commentuserinfo .note {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #666; }
 
 .path-mod-competgrade .statusmessage {
   transition: opacity 0.5s ease-in-out; }

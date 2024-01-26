@@ -377,6 +377,64 @@ class external extends external_api {
         $comments->usercomments = array_values($usercomments);
         $comments->appraisercomments = array_values($appraisercomments);
 
+        $dummydata = <<<EOD
+        {
+            "usercomments": [
+                {
+                    "fullname": "Bas Brands",
+                    "note": "",
+                    "picture": "http://placekitten.com/1{$userid}0/1{$userid}0",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "competgrade": 1,
+                            "authorid": 2,
+                            "userid": 2,
+                            "commenttitle": "Comment title",
+                            "commenttext": "Comment text",
+                            "timemodified": 1611152400
+                        }
+                    ]
+                }
+            ],
+            "appraisercomments": [
+                {
+                    "fullname": "Alisette Bethesda",
+                    "note": "Progressing",
+                    "picture": "http://placekitten.com/{$userid}00/1{$userid}00",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "competgrade": 1,
+                            "authorid": 2,
+                            "userid": 2,
+                            "commenttitle": "Long comment",
+                            "commenttext": "Pokemon Ipsum dolor sit amet, vulputate adipiscing elit. Ut euismod, elit quis vulputate aliquam, nibh nulla aliquet elit, a euismod mauris purus",
+                            "timemodified": 1611152400
+                        }
+                    ]
+                },
+                {
+                    "fullname": "Priscilla Purrington",
+                    "note": "Approving on 2021-01-20",
+                    "picture": "http://placekitten.com/{$userid}03/{$userid}03",
+                    "comments": [
+                        {
+                            "id": 1,
+                            "competgrade": 1,
+                            "authorid": 2,
+                            "userid": 2,
+                            "commenttitle": "Long comment",
+                            "commenttext": "Pokemon Ipsum dolor sit amet, vulputate adipiscing elit. Ut euismod, elit quis vulputate aliquam, nibh nulla aliquet elit, a euismod mauris purusPokemon Ipsum dolor sit amet, vulputate adipiscing elit. Ut euismod, elit quis vulputate aliquam, nibh nulla aliquet elit, a euismod mauris purusPokemon Ipsum dolor sit amet, vulputate adipiscing elit. Ut euismod, elit quis vulputate aliquam, nibh nulla aliquet elit, a euismod mauris purusPokemon Ipsum dolor sit amet, vulputate adipiscing elit. Ut euismod, elit quis vulputate aliquam, nibh nulla aliquet elit, a euismod mauris purus",
+                            "timemodified": 1611152400
+                        }
+                    ]
+                }
+            ]
+        }
+        EOD;
+        $comments = json_decode($dummydata);
+
         return [
             'comments' => $comments,
         ];
@@ -396,6 +454,7 @@ class external extends external_api {
                             new external_single_structure(
                                 array(
                                     'fullname' => new external_value(PARAM_TEXT, 'Fullname'),
+                                    'note' => new external_value(PARAM_TEXT, 'Note'),
                                     'picture' => new external_value(PARAM_RAW, 'User picture'),
                                     'comments' => new external_multiple_structure(
                                         new external_single_structure(
@@ -710,54 +769,69 @@ class external extends external_api {
                     "confidence": 50,
                     "realised": true,
                     "verified": true,
-                    "allcomments": {
-                        "fullname": "Bertille Tissot",
-                        "picture": "http://placekitten.com/200/200",
-                        "comments": [
-                            {
-                                "timecreated": 1451606400,
-                                "commenttitle": "Well done",
-                                "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
-                            },
-                            {
-                                "timecreated": 1451606400,
-                                "commenttitle": "How dit you do that?",
-                                "commenttext": "Pikachu ipsum dolor sit amet, vulpix jigglypuff vulpix pikachu jigglyp"
-                            }
-                        ]
-                    }
+                    "allcomments": [
+                        {
+                            "fullname": "Bertille Tissot",
+                            "note": "Approved subject",
+                            "picture": "http://placekitten.com/200/200",
+                            "comments": [
+                                {
+                                    "timecreated": 1451606400,
+                                    "commenttitle": "Well done",
+                                    "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
+                                }
+                            ]
+                        },
+                        {
+                            "fullname": "Giselle Lefevre",
+                            "note": "",
+                            "picture": "http://placekitten.com/174/174",
+                            "comments": [
+                                {
+                                    "timecreated": 1451606400,
+                                    "commenttitle": "Well done",
+                                    "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "description": "Performed a anamnesis and a physical examination of a patient with a headache",
                     "confidence": 100,
                     "realised": false,
                     "verified": false,
-                    "allcomments": {
-                        "fullname": "Kitty Cat",
-                        "picture": "http://placekitten.com/100/100",
-                        "comments": [
-                            {
-                                "timecreated": 1451606400,
-                                "commenttitle": "Your progress is outstanding",
-                                "commenttext": "During the course of this certification, you have shown a great deal of motivation and you have been able to learn a lot of things. Keep up the good work!"
-                            },
-                            {
-                                "timecreated": 1451606400,
-                                "commenttitle": "Unfortunatly, you did not pass the certification",
-                                "commenttext": "The level of confidence you have shown during the certification is not high enough to validate it. You should try again later."
-                            },
-                            {
-                                "timecreated": 1451606400,
-                                "commenttitle": "Well done",
-                                "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
-                            },
-                            {
-                                "timecreated": 1451606400,
-                                "commenttitle": "How dit you do that?",
-                                "commenttext": "Pikachu ipsum dolor sit amet, vulpix jigglypuff vulpix pikachu jigglyp"
-                            }
-                        ]
-                    }
+                    "allcomments": [
+                        {
+                            "fullname": "Hector Lefevre",
+                            "note": "Approved subject",
+                            "picture": "http://placekitten.com/100/100",
+                            "comments": [
+                                {
+                                    "timecreated": 1451606400,
+                                    "commenttitle": "Your progress is outstanding",
+                                    "commenttext": "During the course of this certification, you have shown a great deal of motivation and you have been able to learn a lot of things. Keep up the good work!"
+                                },
+                                {
+                                    "timecreated": 1451606400,
+                                    "commenttitle": "Unfortunatly, you did not pass the certification",
+                                    "commenttext": "The level of confidence you have shown during the certification is not high enough to validate it. You should try again later."
+                                }
+                            ]
+                        },
+                        {
+                            "fullname": "Jerome Boulanger",
+                            "note": "Rejected subject",
+                            "picture": "http://placekitten.com/150/150",
+                            "comments": [
+                                {
+                                    "timecreated": 1451606400,
+                                    "commenttitle": "Reverse it and try again",
+                                    "commenttext": "Reverse the objectivs and memorize them. You will be able to pass the certification next time."
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
@@ -784,19 +858,22 @@ class external extends external_api {
                             'confidence' => new external_value(PARAM_INT, 'Certification confidence'),
                             'realised' => new external_value(PARAM_BOOL, 'Certification realised'),
                             'verified' => new external_value(PARAM_BOOL, 'Certification verified'),
-                            'allcomments' => new external_single_structure(
-                                array(
-                                    'fullname' => new external_value(PARAM_TEXT, 'Fullname'),
-                                    'picture' => new external_value(PARAM_RAW, 'User picture'),
-                                    'comments' => new external_multiple_structure(
-                                        new external_single_structure(
-                                            array(
-                                                'timecreated' => new external_value(PARAM_INT, 'Time created'),
-                                                'commenttitle' => new external_value(PARAM_TEXT, 'Comment title'),
-                                                'commenttext' => new external_value(PARAM_TEXT, 'Comment'),
+                            'allcomments' => new external_multiple_structure(
+                                new external_single_structure(
+                                    array(
+                                        'fullname' => new external_value(PARAM_TEXT, 'Fullname'),
+                                        'note' => new external_value(PARAM_TEXT, 'Note'),
+                                        'picture' => new external_value(PARAM_RAW, 'User picture'),
+                                        'comments' => new external_multiple_structure(
+                                            new external_single_structure(
+                                                array(
+                                                    'timecreated' => new external_value(PARAM_INT, 'Time created'),
+                                                    'commenttitle' => new external_value(PARAM_TEXT, 'Comment title'),
+                                                    'commenttext' => new external_value(PARAM_TEXT, 'Comment'),
+                                                )
                                             )
-                                        )
-                                    ),
+                                        ),
+                                    )
                                 )
                             ),
                         )

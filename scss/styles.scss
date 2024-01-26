@@ -96,14 +96,13 @@
         border-width: 3px;
         &.active,
         &:hover {
-            color: #0E847B;
-            border-color: transparent transparent #0E847B;
+            border-color: transparent transparent var(--primary);
             svg {
                 .svg-fill {
-                    fill: #0E847B;
+                    fill: var(--primary);
                 }
                 .svg-stroke {
-                    stroke: #0E847B;
+                    stroke: var(--primary);
                 }
             }
         }
@@ -121,6 +120,13 @@
         .userimage img {
             width: 35px;
             height: 35px;
+        }
+    }
+    .commentuserinfo {
+        .note {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #666;
         }
     }
     .statusmessage {
