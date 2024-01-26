@@ -92,14 +92,19 @@
     .certifsection {
         margin-bottom: 0.5rem;
     }
-    .nav-link.active {
-        color: #0E847B;
-        svg {
-            .svg-fill {
-                fill: #0E847B;
-            }
-            .svg-stroke {
-                stroke: #0E847B;
+    .nav-link {
+        border-width: 3px;
+        &.active,
+        &:hover {
+            color: #0E847B;
+            border-color: transparent transparent #0E847B;
+            svg {
+                .svg-fill {
+                    fill: #0E847B;
+                }
+                .svg-stroke {
+                    stroke: #0E847B;
+                }
             }
         }
     }
@@ -113,9 +118,41 @@
     }
     .commentsection {
         margin-bottom: 1rem;
+        .userimage img {
+            width: 35px;
+            height: 35px;
+        }
     }
     .statusmessage {
         transition: opacity 0.5s ease-in-out;
+    }
+    .certification {
+        .heading,
+        .certif {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .col1 {
+            flex: 1 1 50%;
+            max-width: 50%;
+        }
+        .col2 {
+            flex: 1 1 26%;
+            max-width: 26%;
+        }
+        .col3 {
+            flex: 1 1 12%;
+            max-width: 12%;
+            text-align: center;
+        }
+        .col4 {
+            flex: 1 1 12%;
+            max-width: 12%;
+            text-align: center;
+        }
+        .progress {
+            height: 3px;
+        }
     }
     .opacity-0 {
         opacity: 0;

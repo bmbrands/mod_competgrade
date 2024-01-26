@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2024011905;
+$plugin->version   = 2024012600;
 $plugin->requires  = 2022111800;
 $plugin->component = 'mod_competgrade';
 $plugin->cron      = 0;

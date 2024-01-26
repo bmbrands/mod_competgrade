@@ -77,6 +77,24 @@ class CompetGrade {
     }
 
     /**
+     * Get the Certification.
+     * @param {Object} user The user.
+     * @return {Promise} The promise.
+     */
+    getCertification(user) {
+        const args = {
+            'competgrade': this.competgrade,
+            'userid': user.id,
+        };
+        const request = {
+            methodname: 'mod_competgrade_certification',
+            args: args
+        };
+        const promise = Ajax.call([request])[0];
+        promise.fail(Notification.exception);
+        return promise;
+    }
+    /**
      * Save the grade
      * @param {Object} args The grade to save.
      * @return {Promise} The promise.
@@ -280,6 +298,7 @@ class CompetGrade {
     render() {
         this.renderUserNavigation();
         this.renderComments();
+        this.renderCertification();
         this.getGlobalComment();
     }
 
@@ -319,8 +338,57 @@ class CompetGrade {
 
         Templates.render(template, comments).then((html) => {
             commentsRegion.innerHTML = html;
+            this.activateShowMoreLess();
             return;
         }).catch(Notification.exception);
+    }
+
+    /**
+     * Render the certification.
+     */
+    async renderCertification() {
+        const certification = await this.getCertification(this.currentUser);
+        const certificationRegion = this.gradingApp.querySelector('[data-region="certification"]');
+        const template = 'mod_competgrade/certification';
+
+        if (!certification) {
+            return;
+        }
+
+        Templates.render(template, certification).then((html) => {
+            certificationRegion.innerHTML = html;
+            return;
+        }).catch(Notification.exception);
+    }
+
+    /**
+     * Activate show more / less for comments.
+     */
+    activateShowMoreLess() {
+        const comments = this.gradingApp.querySelectorAll('[data-region="commenttext"]');
+        comments.forEach((comment) => {
+            const showMore = comment.querySelector('[data-action="showmore"]');
+            const showLess = comment.querySelector('[data-action="showless"]');
+            const shortText = comment.querySelector('[data-region="shorttext"]');
+            const fullText = comment.querySelector('[data-region="fulltext"]');
+            if (shortText.innerHTML.length != fullText.innerHTML.length) {
+                showMore.classList.remove('d-none');
+            }
+            showMore.addEventListener('click', (event) => {
+                event.preventDefault();
+                shortText.classList.add('d-none');
+                fullText.classList.remove('d-none');
+                showMore.classList.add('d-none');
+                showLess.classList.remove('d-none');
+            });
+            showLess.addEventListener('click', (event) => {
+                event.preventDefault();
+                shortText.classList.remove('d-none');
+                fullText.classList.add('d-none');
+                showMore.classList.remove('d-none');
+                showLess.classList.add('d-none');
+            });
+        });
     }
 
     /**

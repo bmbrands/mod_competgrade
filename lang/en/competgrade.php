@@ -46,3 +46,6 @@ $string['globalcomment'] = 'Global comment';
 $string['globalcomment_info'] = 'This comment will be shared with the student';
 $string['commentsaved'] = 'Comment saved';
 $string['enterskillassesment'] = 'enter your skills assessments here';
+$string['entercertificationassesment'] = 'enter your certification assessments here';
+$string['more'] = 'more';
+$string['less'] = 'less';

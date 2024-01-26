@@ -77,7 +77,6 @@
         <FIELD NAME="type" TYPE="int" LENGTH="4" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="changeme" TYPE="" NOTNULL="false" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

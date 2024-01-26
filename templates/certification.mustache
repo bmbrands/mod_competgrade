@@ -1,0 +1,106 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_competgrade/certification
+
+    TODO describe template certification
+
+    Example context (json):
+    {
+        "certifs": [
+            {
+                "description": "Certification 1",
+                "confidence": 50,
+                "realised": true,
+                "verified": true,
+                "comments": [
+                    {
+                        "timecreated": 1451606400,
+                        "commenttitle": "Well done",
+                        "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
+                    },
+                    {
+                        "timecreated": 1451606400,
+                        "commenttitle": "How dit you do that?",
+                        "commenttext": "Pikachu ipsum dolor sit amet, vulpix jigglypuff vulpix pikachu jigglyp"
+                    }
+                ]
+            },
+            {
+                "description": "Certification 2",
+                "confidence": 100,
+                "realised": false,
+                "verified": false,
+                "comments": [
+                    {
+                        "timecreated": 1451606400,
+                        "commenttitle": "Your progress is outstanding",
+                        "commenttext": "During the course of this certification, you have shown a great deal of motivation and you have been able to learn a lot of things. Keep up the good work!"
+                    },
+                    {
+                        "timecreated": 1451606400,
+                        "commenttitle": "Unfortunatly, you did not pass the certification",
+                        "commenttext": "The level of confidence you have shown during the certification is not high enough to validate it. You should try again later."
+                    }
+                ]
+            }
+        ]
+    }
+}}
+<div class="heading">
+    <div class="col1"></div>
+    <div class="col2">Level of confidence</div>
+    <div class="col3">realised</div>
+    <div class="col4">verified</div>
+</div>
+<div class="content">
+    {{#certifs}}
+        <div class="certif">
+            <div class="col1">
+                <div class="description mb-2"><strong>{{description}}</strong></div>
+                {{#allcomments}}
+                    {{> mod_competgrade/comment}}
+                {{/allcomments}}
+            </div>
+            <div class="col2">
+                <div class="d-flex progress-container align-items-center px-3">
+                    <div class="progress flex-fill mr-1">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{confidence}}" aria-valuemin="0" aria-valuemax="100" style="width: {{confidence}}%;">
+                        </div>
+                    </div>
+                    {{confidence}}%
+                </div>
+            </div>
+            <div class="col3">
+                {{#realised}}
+                    <i class="fa fa-check text-danger"></i>
+                {{/realised}}
+                {{^realised}}
+                    <i class="fa fa-times text-success"></i>
+                {{/realised}}
+            </div>
+            <div class="col4">
+                {{#verified}}
+                    <i class="fa fa-check text-danger"></i>
+                {{/verified}}
+                {{^verified}}
+                    <i class="fa fa-times text-success"></i>
+                {{/verified}}
+            </div>
+        </div>
+    {{/certifs}}
+</div>

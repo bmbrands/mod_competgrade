@@ -237,7 +237,7 @@ class external extends external_api {
         $competgrade = new \mod_competgrade\competgrade($cm);
 
         $userlist = $competgrade->student_list();
-        $grades = \mod_competgrade\grade::fetch_all(['competgrade' => $competgrade->id]);
+        $grades = \mod_competgrade\grade::fetch_all(['competgrade' => $competgrade->id, 'type' => 1]);
         // Get the user picture for each user.
         foreach ($userlist as $key => $user) {
             $userpicture = new user_picture($user);
@@ -659,6 +659,149 @@ class external extends external_api {
                 'commentid' => new external_value(PARAM_INT, 'Comment ID'),
                 'commenttitle' => new external_value(PARAM_TEXT, 'Comment title'),
                 'commenttext' => new external_value(PARAM_TEXT, 'Comment'),
+            )
+        );
+    }
+
+    /**
+     * Returns description of method parameters
+     */
+    public static function certification_parameters() {
+        return new external_function_parameters(
+            array(
+                'competgrade' => new external_value(PARAM_INT, 'competgrade ID', VALUE_DEFAULT, 0),
+                'userid' => new external_value(PARAM_INT, 'User ID', VALUE_DEFAULT, 0),
+            )
+        );
+    }
+
+    /**
+     * Get the user certification data.
+     *
+     * @param int $competgrade Competgrade ID
+     * @param int $userid User ID
+     */
+    public static function certification(int $competgrade, int $userid) {
+        global $USER;
+
+        $params = self::validate_parameters(self::certification_parameters(),
+            [
+                'competgrade' => $competgrade,
+                'userid' => $userid,
+            ]
+        );
+
+        $competgrade = $params['competgrade'];
+        $userid = $params['userid'];
+
+        $cm  = get_coursemodule_from_instance('competgrade', $competgrade, 0, false, MUST_EXIST);
+        $context = context_module::instance($cm->id);
+        require_capability('mod/competgrade:grade', $context);
+
+        $usercontext = \context_user::instance($USER->id);
+
+        self::validate_context($usercontext);
+
+        $json = <<<EOF
+        {
+            "certifs": [
+                {
+                    "description": "Finished a clinical examination, examined the thyroid gland and the lymph nodes",
+                    "confidence": 50,
+                    "realised": true,
+                    "verified": true,
+                    "allcomments": {
+                        "fullname": "Bertille Tissot",
+                        "picture": "http://placekitten.com/200/200",
+                        "comments": [
+                            {
+                                "timecreated": 1451606400,
+                                "commenttitle": "Well done",
+                                "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
+                            },
+                            {
+                                "timecreated": 1451606400,
+                                "commenttitle": "How dit you do that?",
+                                "commenttext": "Pikachu ipsum dolor sit amet, vulpix jigglypuff vulpix pikachu jigglyp"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "description": "Performed a anamnesis and a physical examination of a patient with a headache",
+                    "confidence": 100,
+                    "realised": false,
+                    "verified": false,
+                    "allcomments": {
+                        "fullname": "Kitty Cat",
+                        "picture": "http://placekitten.com/100/100",
+                        "comments": [
+                            {
+                                "timecreated": 1451606400,
+                                "commenttitle": "Your progress is outstanding",
+                                "commenttext": "During the course of this certification, you have shown a great deal of motivation and you have been able to learn a lot of things. Keep up the good work!"
+                            },
+                            {
+                                "timecreated": 1451606400,
+                                "commenttitle": "Unfortunatly, you did not pass the certification",
+                                "commenttext": "The level of confidence you have shown during the certification is not high enough to validate it. You should try again later."
+                            },
+                            {
+                                "timecreated": 1451606400,
+                                "commenttitle": "Well done",
+                                "commenttext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisl euismod, aliquam nunc nec, aliquam nu"
+                            },
+                            {
+                                "timecreated": 1451606400,
+                                "commenttitle": "How dit you do that?",
+                                "commenttext": "Pikachu ipsum dolor sit amet, vulpix jigglypuff vulpix pikachu jigglyp"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+        EOF;
+        // Convert the JSON string to a PHP object.
+        $certifs = json_decode($json);
+        return [
+            'certifs' => $certifs->certifs,
+        ];
+    }
+
+    /**
+     * Returns description of method result value
+     *
+     * @return external_description
+     */
+    public static function certification_returns() {
+        return new external_single_structure(
+            array(
+                'certifs' => new external_multiple_structure(
+                    new external_single_structure(
+                        array(
+                            'description' => new external_value(PARAM_TEXT, 'Certification description'),
+                            'confidence' => new external_value(PARAM_INT, 'Certification confidence'),
+                            'realised' => new external_value(PARAM_BOOL, 'Certification realised'),
+                            'verified' => new external_value(PARAM_BOOL, 'Certification verified'),
+                            'allcomments' => new external_single_structure(
+                                array(
+                                    'fullname' => new external_value(PARAM_TEXT, 'Fullname'),
+                                    'picture' => new external_value(PARAM_RAW, 'User picture'),
+                                    'comments' => new external_multiple_structure(
+                                        new external_single_structure(
+                                            array(
+                                                'timecreated' => new external_value(PARAM_INT, 'Time created'),
+                                                'commenttitle' => new external_value(PARAM_TEXT, 'Comment title'),
+                                                'commenttext' => new external_value(PARAM_TEXT, 'Comment'),
+                                            )
+                                        )
+                                    ),
+                                )
+                            ),
+                        )
+                    )
+                ),
             )
         );
     }

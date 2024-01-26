@@ -65,6 +65,14 @@ $functions = [
         'ajax'        => true,
         'services'    => array(MOODLE_OFFICIAL_MOBILE_SERVICE),
     ),
+    'mod_competgrade_certification' => array(
+        'classname'   => 'mod_competgrade\external',
+        'methodname'  => 'certification',
+        'description' => 'Get the certification data for a user',
+        'type'        => 'write',
+        'ajax'        => true,
+        'services'    => array(MOODLE_OFFICIAL_MOBILE_SERVICE),
+    ),
     'mod_competgrade_comment' => array(
         'classname'   => 'mod_competgrade\external',
         'methodname'  => 'comment',

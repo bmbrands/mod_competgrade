@@ -84,12 +84,15 @@
 .path-mod-competgrade .certifsection {
   margin-bottom: 0.5rem; }
 
-.path-mod-competgrade .nav-link.active {
-  color: #0E847B; }
-  .path-mod-competgrade .nav-link.active svg .svg-fill {
-    fill: #0E847B; }
-  .path-mod-competgrade .nav-link.active svg .svg-stroke {
-    stroke: #0E847B; }
+.path-mod-competgrade .nav-link {
+  border-width: 3px; }
+  .path-mod-competgrade .nav-link.active, .path-mod-competgrade .nav-link:hover {
+    color: #0E847B;
+    border-color: transparent transparent #0E847B; }
+    .path-mod-competgrade .nav-link.active svg .svg-fill, .path-mod-competgrade .nav-link:hover svg .svg-fill {
+      fill: #0E847B; }
+    .path-mod-competgrade .nav-link.active svg .svg-stroke, .path-mod-competgrade .nav-link:hover svg .svg-stroke {
+      stroke: #0E847B; }
 
 .path-mod-competgrade .comment {
   margin-top: 0.25rem;
@@ -101,9 +104,38 @@
 
 .path-mod-competgrade .commentsection {
   margin-bottom: 1rem; }
+  .path-mod-competgrade .commentsection .userimage img {
+    width: 35px;
+    height: 35px; }
 
 .path-mod-competgrade .statusmessage {
   transition: opacity 0.5s ease-in-out; }
+
+.path-mod-competgrade .certification .heading,
+.path-mod-competgrade .certification .certif {
+  display: flex;
+  margin-bottom: 1rem; }
+
+.path-mod-competgrade .certification .col1 {
+  flex: 1 1 50%;
+  max-width: 50%; }
+
+.path-mod-competgrade .certification .col2 {
+  flex: 1 1 26%;
+  max-width: 26%; }
+
+.path-mod-competgrade .certification .col3 {
+  flex: 1 1 12%;
+  max-width: 12%;
+  text-align: center; }
+
+.path-mod-competgrade .certification .col4 {
+  flex: 1 1 12%;
+  max-width: 12%;
+  text-align: center; }
+
+.path-mod-competgrade .certification .progress {
+  height: 3px; }
 
 .path-mod-competgrade .opacity-0 {
   opacity: 0; }

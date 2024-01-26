@@ -28,43 +28,13 @@
         <div class="row">
             <div class="col-6">
                 {{#appraisercomments}}
-                    <div class="commentsection">
-                        <div class="d-flex usernavigation">
-                            <div class="userimage mr-2">
-                                <img src="{{{picture}}}" alt="{{fullname}}" class="rounded-circle">
-                            </div>
-                            <div class="commentuserinfo">
-                                <div class="fullname text-truncate">{{fullname}}</div>
-                            </div>
-                        </div>
-                        {{#comments}}
-                            <div class="comment">
-                                {{#commenttitle}}<div><strong>{{{commenttitle}}}</strong></div>{{/commenttitle}}
-                                {{{commenttext}}}
-                            </div>
-                        {{/comments}}
-                    </div>
+                    {{> mod_competgrade/comment}}
                 {{/appraisercomments}}
             </div>
             <div class="col-6">
                 <div data-region="comments-self"></div>
                 {{#usercomments}}
-                    <div class="commentsection">
-                        <div class="d-flex usernavigation">
-                            <div class="userimage mr-2">
-                                <img src="{{{picture}}}" alt="{{fullname}}" class="rounded-circle">
-                            </div>
-                            <div class="commentuserinfo">
-                                <div class="fullname text-truncate">{{fullname}}</div>
-                            </div>
-                        </div>
-                        {{#comments}}
-                            <div class="comment">
-                                {{#commenttitle}}<div><strong>{{{commenttitle}}}</strong></div>{{/commenttitle}}
-                                {{{commenttext}}}
-                            </div>
-                        {{/comments}}
-                    </div>
+                    {{> mod_competgrade/comment}}
                 {{/usercomments}}
             </div>
         </div>

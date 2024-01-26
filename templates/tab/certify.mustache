@@ -24,12 +24,23 @@
     }
 }}
 <div class="tab-main">
-    <div class="p-3">
-        Certify
+    <div class="p-3 certification" data-region="certification">
     </div>
 </div>
 <div class="tab-aside">
     <div class="p-3" data-region="tab-side">
-        List of things
+        <div class="certifheading d-flex align-items-center">
+          <span class="mr-2">{{> mod_competgrade/svg/certif}}</span>
+          {{#str}}certify, mod_competgrade{{/str}}
+        </div>
+        <div class="mb-2">{{#str}}entercertificationassesment, mod_competgrade{{/str}}</div>
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="number" class="form-control" name="globalgrade" data-action="globalgrade" data-grade-id="0" data-criterium-id="1" value="{{globalgrade}}" min="0" max="100" step="1" />
+                <label class="certifheading ml-2">
+                    / 100
+                </label>
+            </div>
+        </form>
     </div>
 </div>
